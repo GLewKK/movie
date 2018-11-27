@@ -1,0 +1,86 @@
+﻿@using MovieProject.ViewModels
+@model MovieProject.ViewModels.UsersViewModel
+
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="modal-body panel-body">
+    <div class="form-group">
+        @Html.TextBoxFor(x => x.Login, new { @class = "form-control valid", @placeholder = "User Name" })
+        <label style="color:red" id="emaillabel"></label>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        @Html.TextBoxFor(x => x.Password, new { @type = "password", @class = "form-control valid", @placeholder = "Password" })
+        <label style="color:red" id="passwordlabel"></label>
+
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.Role, new SelectList(UserRoles.Roles, "value", "text"), htmlAttributes: new { @class = "form-control" })
+    </div>
+
+    <br />
+    <div class="modal-footer form-group">
+        <div id="dialoguealert"></div>
+        <button type="submit" class="btn btn-primary" id="submit">Create</button>   |
+        <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Cancel</button>
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $("#submit").on("click", function () {
+        debugger
+            var data = {
+                Login: $("#Login").val(),
+                Password: $("#Password").val(),
+                Role: $("#Role").val(),
+                async:true
+            }
+                 $.ajax({
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        method: "post",
+                        url: '@Url.Action("Create", "User")',
+                        data: JSON.stringify(data),
+                     success: function (result) {
+                         debugger;
+                         if (result.success === false) {
+                             if (data.Login === "") {
+                                 $("#emaillabel").text("Please specify an Email address");
+                             }
+                             else {
+                                 $("#emaillabel").text("");
+
+                             }
+                             if (data.Password === "") {
+                                 $("#passwordlabel").text("Please specify a Password");
+                             }
+                             else {
+                                 $("#passwordlabel").text("");
+
+                             }
+                         }
+                         else {
+                             location.reload();
+                         }
+                     },
+
+                     error: function (result) {
+
+                     }
+                    });
+
+
+
+
+    });
+
+</script>

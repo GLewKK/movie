@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+@using BLL
+@using Microsoft.AspNet.Identity
+@{ 
+    ITakeRequest iRequest = new TakeRequest();
+    var id = User.Identity.GetUserId();
+    bool hasCredit=iRequest.CheckCredit(id);
+}
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <link href="~/Content/layout/css/layouts/marketing.css" rel="stylesheet" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/Template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="~/Content/Template/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/Template/dist/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="~/Content/Template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0 ;background-color: #2d3e50">
+            <div class="navbar-header ">
+                @Html.ActionLink("Home", "Index", "Home", null, htmlAttributes: new { @class = "navbar-brand", @style = "color: white;" })
+                @if (!hasCredit)
+                {
+                    @Html.ActionLink("Solicit a Credit", "Credit", "Credit", null, htmlAttributes:new { @class= "navbar-brand", @style="color: white;"})
+                }
+                else
+                {
+                    @Html.ActionLink("My Credit", "Request", "Home", null, htmlAttributes: new { @class = "navbar-brand", @style = "color: white;" })
+                }
+                @Html.ActionLink("Contact", "Contact", "Home", null, htmlAttributes: new { @class = "navbar-brand", @style = "color: white;" })
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-tasks fa-fw" style="color:white;"></i> <i class="fa fa-caret-down" style="color: white;"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-tasks">
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Tasks</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw " style="color: white;"></i>@this.User.Identity.Name <i class="fa fa-caret-down" style="color: white;"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar">
+                <div class="sidebar-nav navbar-collapse">
+                    
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- Page Content -->
+            <div class="container-fluid" style="background:#ffffff">
+                <div class="row">
+                    @RenderBody()
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Content/Template/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Content/Template/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Content/Template/dist/js/sb-admin-2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            var center = "text-center";
+            var url = '@Url.Action("Request", "Home")';
+            $.ajax({
+                url: '@Url.Action("GetRequestJsonResult", "User")',
+                dataType: "json",
+                data: {},
+                success: function (data) {
+                    $(".dropdown-tasks").prepend("<li><a class= '" + center + "' href = '"+ url +"' >" + data.Text + "</li>");
+                },
+                error: function () {
+                }
+            });
+
+        });
+    </script>
+
+</body>
+
+

@@ -1,0 +1,100 @@
+﻿@model DAL.Models.DataExtra
+
+<div class="row">
+    <h1 class="page-header">Details</h1>
+    <br />
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div >
+            <div>
+                <table class="table">
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.User.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.User.Email)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong> Name</strong>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.FirstName)  @Html.DisplayFor(m => m.LastName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Telephone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Role)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Role)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                @Html.ActionLink("Back To List", "Index", "User", htmlAttributes: new { @class = "btn btn-primary" })
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div id="partialContainer">
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div id="calendarContainer">
+
+    </div>
+</div>
+<br />
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+      $(document).ready(
+          function () {
+              debugger;
+                var id= '@Model.UserId';
+                var role = '@Model.Role';
+                debugger;
+              if (role == "Editor" || role== "Moderator") {
+                  $.ajax({
+                      url: '@Url.Action("GetRequestCalendar", "User")',
+                      dataType: 'html',
+                      data: { userId: id},
+                      success: function (result) {
+                          $('#calendarContainer').html(result);
+                      }
+                  });
+
+                  $.ajax({
+                      url: '@Url.Action("GetRequestChart", "User")',
+                      dataType: 'html',
+                      data: { userId: id, role: role },
+                      success: function (result) {
+                          $('#partialContainer').html(result);
+                      }
+                  });
+
+                  
+                }
+
+
+
+
+            });
+</script>

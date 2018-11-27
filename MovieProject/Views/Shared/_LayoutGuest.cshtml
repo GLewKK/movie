@@ -1,0 +1,45 @@
+﻿<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <link href="~/Content/layout/css/layouts/marketing.css" rel="stylesheet" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <!--<![endif]-->
+</head>
+<body>
+
+
+
+
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">Credit Plus</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item">@Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "pure-menu-link" })</li>
+                <li class="pure-menu-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "pure-menu-link", @id = "loginLink" })</li>
+            </ul>
+        </div>
+    </div>        <!-- Page Content -->
+    <div class="container-fluid" style="background:#ffffff">
+        @RenderBody()
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Content/Template/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="~/Content/Template/vendor/metisMenu/metisMenu.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="~/Content/Template/dist/js/sb-admin-2.min.js"></script>
+        </div>
+</body>

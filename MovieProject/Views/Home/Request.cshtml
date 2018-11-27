@@ -1,0 +1,126 @@
+﻿﻿@model DAL.Models.Request
+@{
+    ViewBag.Title = "Request";
+}
+<link href="~/Content/NotValid.css" rel="stylesheet" />
+<br />
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default" id="forms">
+            <div class="panel-heading">
+                
+            </div>
+            <div class="panel-body" data-status="@Model.Status.Name" id="statusData">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Credit.DataExtra.FirstName, htmlAttributes: new { @class = "form-control toedit", @readonly = "readonly", @id = "Firstname" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(model => model.Credit.DataExtra.LastName, new { @class = "form-control toedit", @readonly = "readonly", @id = "Lastname" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(model => model.Credit.DataExtra.Telephone, new { @class = "form-control toedit", @readonly = "readonly", @id = "Telephone" })
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(model => model.Credit.DataExtra.IDNP, new { @class = "form-control toedit", @readonly = "readonly", @id = "IDNP" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.EditorFor(model => model.Credit.DataExtra.PersonType, new { htmlAttributes = new { @class = "form-control toedit", @readonly = "readonly", @disabled = "disabled", @id = "Person_Type" } })
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="form-control" style="width: 100px" id="buttonsubmit">Submit</button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var firstname = $("#firstname").val();
+        var lastname = $("#lastname").val();
+        var telephone = $("#telephone").val();
+        var idnp = $("#IDNP").val();
+        var personType = $("#Person_Type").val();
+           $("#buttonedit").on("click",
+               function () {
+                   $("#okbutton").toggleClass("glyphicon-ok");
+                   if ($("#okbutton").hasClass("glyphicon-pencil")) {
+                       $(".toedit").attr("readonly", true);
+                       $(".toedit").attr("disabled", true);
+
+                       }
+
+                   if ($("#okbutton").hasClass("glyphicon-ok")) {
+                       $(".toedit").attr("readonly", false);
+                       $(".toedit").attr("disabled", false);
+
+                   }
+               });
+
+        $("#buttonundo").on("click",
+               function () {
+                   $("#firstname").val(firstname);
+                   $("#lastname").val(lastname);
+                   $("#telephone").val(telephone);
+                   $("#IDNP").val(idnp);
+                   $("#Person_Type").val(personType);
+               });
+
+    });
+
+    $("#forms .buttonfalse").on("click",
+        function () {
+           // $(this).parent(".form-inline").closest(".buttonfalse").val("sasok");
+           // var asd = $(this).parent(".form-inline").closest(".toedit").val();
+            $(this).parent('div:first').children('.toedit').toggleClass("notvalid");
+        });
+
+    $("#buttonsubmit").on("click",
+
+        function () {
+            debugger;
+            var isNotValid = $('.toedit').hasClass("notvalid");
+            var isReadonly = $("#okbutton").hasClass("glyphicon-ok");
+            var notValidValue = $('.toedit').filter('.notvalid');
+            var list = [];
+            var string;
+            if (isReadonly) {
+                alert("Please set readonly");
+            } else {
+            if (isNotValid) {
+                alert("is not valid");
+                notValidValue.each(function () {
+                    list.push(this.id);
+                    string = this.id;
+                });
+                list.toString();
+                $.ajax({
+                    url:  '@Url.Action("SetStatus","User")',
+                    method: "POST",
+                    data: {list: list},
+                    success: function(result) {
+                        alert(result);
+                    }
+                });
+            } else {
+                alert("is valid");
+            }
+                }
+        });
+
+</script>

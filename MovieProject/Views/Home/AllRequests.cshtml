@@ -1,0 +1,104 @@
+﻿﻿<!Doctype html>
+@model RequestsViewModel
+@using MovieProject.ViewModels
+@using DAL.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- DataTables CSS -->
+    <link href="~/Content/Template/vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="~/Content/Template/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <div class="col-lg-pull-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-striped table-bordered table-hover" id="myTable">
+                    <thead>
+                        <tr>
+                            <td>
+                                Request
+                            </td>
+
+                            <td>
+                                Solicitor
+                            </td>
+                            <td>
+                                Editor
+                            </td>
+                            <td>
+                                Moderator
+                            </td>
+                            <td>
+                                Status
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.AllRequests)
+                        {
+                            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                            var creditorname = "None";
+                            var moderatorname = "None";
+                            if (item.CreditorId !=null)
+                            {
+                                creditorname = manager.FindById(item.CreditorId).UserName;
+                            }
+                            if(item.ModeratorId!=null)
+                            {
+                                moderatorname= manager.FindById(item.ModeratorId).UserName;
+                            }
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Text)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.UserName)
+                                </td>
+                                <td>
+                                    @Html.Encode(creditorname)
+                                </td>
+                                <td>
+                                    @Html.Encode(moderatorname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status.Name)
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery -->
+    <script src="~/Content/Template/vendor/jquery/jquery.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="~/Content/Template/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/Template/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Content/Template/dist/js/sb-admin-2.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function () {
+            $("#myTable").DataTable({
+                responsive: true
+            });
+        });
+
+        $("")
+    </script>
+</body>
+

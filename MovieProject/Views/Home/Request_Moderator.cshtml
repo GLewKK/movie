@@ -1,0 +1,233 @@
+﻿@model DAL.Models.Request
+@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/NotValid.css" rel="stylesheet" />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default" id="forms">
+            <div class="panel-heading">
+                <h4>@Html.DisplayFor(x => x.User.UserName) Request</h4>
+                <h4 id="statuswait">Waiting for respond:</h4>
+            </div>
+            <div class="panel-body" data-status="@Model.Status.Name" id ="statusData">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Credit.DataExtra.FirstName, new { @class = "control-label" })
+                        <div class="form-inline">
+                            @Html.TextBoxFor(x => x.Credit.DataExtra.FirstName, new { @class = "form-control toedit", @readonly = "readonly", @id = "Firstname" })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden" value="buton"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Credit.DataExtra.LastName, new { @class = "control-label" })
+                        <div class="form-inline">
+                            @Html.TextBoxFor(model => model.Credit.DataExtra.LastName, new { @class = "form-control toedit", @readonly = "readonly", @id = "Lastname" })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden" value="buton"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Credit.DataExtra.Telephone, new { @class = "control-label" })
+                        <div class="form-inline">
+                            @Html.TextBoxFor(model => model.Credit.DataExtra.Telephone, new { @class = "form-control toedit", @readonly = "readonly", @id = "Telephone" })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Credit.DataExtra.IDNP, new { @class = "control-label" })
+                        <div class="form-inline">
+                            @Html.TextBoxFor(model => model.Credit.DataExtra.IDNP, new { @class = "form-control toedit has-error", @readonly = "readonly", @id = "IDNP" })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Official Venit</label>
+                        <div class="form-inline">
+                            @Html.TextBoxFor(model => model.Credit.DataExtra.OfficialVenit, new { @class = "form-control toedit", @readonly = "readonly", @id = "OfficialVenit", @data_extra = @Model.Credit.DataExtra.OfficialVenit })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Workspace Phone Number</label>
+                        <div class="form-inline">
+                            @Html.TextBoxFor(model => model.Credit.DataExtra.TelephoneWorkSpace, new { @class = "form-control toedit", @readonly = "readonly", @id = "TelephoneWorkSpace", @data_extra = @Model.Credit.DataExtra.TelephoneWorkSpace })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+                    @if (Model.Credit.DataExtra.IsMarried == true)
+                    {
+
+                        <div class="form-group">
+                            <label class="control-label">Work Space (husband/wife)</label>
+                            <div class="form-inline">
+                                @Html.TextBoxFor(model => model.Credit.DataExtra.WorkSpaceHusbandWife, new { @class = "form-control toedit", @readonly = "readonly", @id = "WorkSpaceHusbandWife", @data_extra = @Model.Credit.DataExtra.WorkSpaceHusbandWife })
+                                <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @* @Html.LabelFor(model => model.Credit.DataExtra.OfficialVenitHusbandWife, new { @class = "control-label" })*@
+                            <label class="control-label">Official Venit (husband/wife)</label>
+                            <div class="form-inline">
+                                @Html.TextBoxFor(model => model.Credit.DataExtra.OfficialVenitHusbandWife, new { @class = "form-control toedit", @readonly = "readonly", @id = "OfficialVenitHusbandWife", @data_extra = @Model.Credit.DataExtra.OfficialVenitHusbandWife })
+                                <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Credit.Sum, new { @class = "control-label" })
+                        <div class="form-inline">
+                            @Html.TextBoxFor(model => model.Credit.Sum, new { @class = "form-control toedit has-error", @readonly = "readonly", @id = "IDNP" })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Credit Months</label>
+                        <div class="form-inline">
+                            @Html.TextBoxFor(model => model.Credit.Months, new { @class = "form-control toedit", @readonly = "readonly", @id = "Months", @data_extra = @Model.Credit.Months })
+                            <button class="buttonfalse btn btn-danger btn-circle pull-right hidden"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+
+            </div>
+            <div class="panel-footer">
+                <button data-request-id="@Model.Id" type="submit" class="form-control btn btn-success" style="width: 100px" id="buttonaccept"><span class ="submited">Accept</span></button>  |
+                <button data-request-id="@Model.Id" type="submit" class="form-control btn btn-danger" style="width: 100px" id="buttondenied">Reject</button>  |
+                @Html.ActionLink("Return to Requests", "Tasks", "Home", htmlAttributes: new { @class=" form-control btn btn-primary ", @style="width:150px"}) |
+            </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        debugger;
+        var firstname = $("#Firstname").val();
+        var lastname = $("#Lastname").val();
+        var telephone = $("#Telephone").val();
+        var idnp = $("#IDNP").val();
+        var personType = $("#Person_Type").val();
+
+        if ($("#statusData").attr("data-status") == "pending for validation") {
+            $(".btn").removeClass("hidden");
+            $("#buttonsubmit").removeClass("disabled");
+            $("#statuswait").addClass("hidden");
+        }
+  
+    $("#forms .buttonfalse").on("click",
+        function() {
+            $(this).parent('div:first').children('.toedit').toggleClass("notvalid");
+            if ($(".toedit").hasClass("notvalid")) {
+                $("#buttonaccept").children("span").text("Update");
+                $("#buttonaccept").children("span").addClass("rejected");
+
+                $("#buttonaccept").removeClass("btn-success");
+                $("#buttonaccept").addClass("btn-warning");
+            } else {
+                $("#buttonaccept").children("span").text("Accept");
+                $("#buttonaccept").children("span").addClass("submited");
+                $("#buttonaccept").removeClass("btn-warning");
+                $("#buttonaccept").addClass("btn-success");
+            }
+
+        });
+    });
+    $("#buttonaccept").on("click",
+        function () {
+            debugger;
+            if ($("#statusData").attr("data-status") == "pending for approval") {
+                var requestId = $("#buttonaccept").attr("data-request-id");
+                if ($("#buttonsubmit").children("span").hasClass("rejected")) {
+                    debugger;
+                    var isNotValid = $('.toedit').hasClass("notvalid");
+                    var notValidValue = $('.toedit').filter('.notvalid');
+                    var list = [];
+                        if (isNotValid) {
+                            $.each(notValidValue,
+                                function() {
+                                    list.push(this.id);
+                                });
+                            list.toString();
+                            $.ajax({
+                                url: '@Url.Action("SetStatus", "User")',
+                                method: "POST",
+                                data: { list: list, id: requestId, status: "denied" },
+                                success: function(result) {
+                                    alert(result);
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            alert("is valid");
+                        }
+                    
+                } else {
+                    debugger;
+                        $.ajax({
+                            url: '@Url.Action("SetStatus", "User")',
+                        method: "POST",
+                        data: { list: list, id: requestId, status: "approved" },
+                        success: function(result) {
+                            alert(result);
+                            location.reload();
+                        }
+                    });
+
+
+                }
+            }
+        });
+
+    $("#buttondenied").on("click",
+        function() {
+            debugger;
+            if ($("#statusData").attr("data-status") == "pending for approval") {
+                var requestId = $("#buttonaccept").attr("data-request-id");
+                var abc = [];
+                $.ajax({
+                    url: '@Url.Action("SetStatus", "User")',
+                method: "POST",
+                data: { list: abc, id: requestId, status: "not-approved" },
+                success: function(result) {
+                    alert(result);
+                    location.reload();
+                }
+                });
+                }
+        });
+
+        function updateStatus() {
+
+        var requestId = $("#buttonaccept").attr("data-request-id");
+        $.ajax({
+            method: "post",
+            url: '@Url.Action("GetCurrentStatus", "User")',
+            data: { requestId: requestId },
+            success: function(result) {
+                if (result != $("#statusData").attr("data-status")) {
+                    $("#statusData").attr("data-status", result);
+                    if (result == "cancelled") {
+                        alert("The request has been canceled");
+                        location.reload();
+                    }
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+        setInterval('updateStatus()', 1000);
+
+    });
+</script>

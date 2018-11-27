@@ -1,0 +1,292 @@
+﻿﻿@model MovieProject.ViewModels.CreditViewModel
+
+@{
+    ViewBag.Title = "Credit";
+}
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="~/Content/highlight.css" rel="stylesheet" />
+    <link href="~/Content/radiobuttons.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            debugger;
+            $("#Sumslider").slider({
+                range: "min",
+                value: @Model.Sum,
+               step: 100,
+                min: 1000,
+                max: 15000,
+                slide: function (event, ui) {
+                    $("#Sum").val(ui.value);
+                }
+            });
+            $("#Sum").val($("#Sumslider").slider("value"));
+        });
+
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true,
+                maxDate: new Date(1998, 1 - 1, 1),
+
+            });
+
+            $(".monthPicker").focus(function () {
+                $(".ui-datepicker-calendar").hide();
+                $("#ui-datepicker-div").position({
+                    my: "center top",
+                    at: "center bottom",
+                    of: $(this)
+                });
+
+            });
+
+        });
+        $(document).ready(function() {
+            $("#checkbox").removeClass("checked");
+            $("#checkbox").addClass("not-checked");
+
+        });
+
+        $("#checkbox").click(function () {
+
+            $("#checkbox").removeClass("not-checked");
+            $("#checkbox").addClass("checked");
+
+            if ($("#checkbox").hasClass("checked")) {
+                alert("checked");
+            }
+        });
+    </script>
+</head>
+<h2>Request Credit</h2>
+
+<br />
+
+
+@using (Html.BeginForm("Credit", "Credit", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<form>
+    <div class="container">
+        @Html.HiddenFor(model => model.UserId, new { @id = "UserId"})
+
+        <div class="row">
+            <div class="group col-md-6">
+                <input type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>First Name</label>
+                @Html.HiddenFor(model => model.FirstName, new { @id = "FirstName", @class = "hidden-wasea" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="group col-md-6">
+                <input type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Last Name</label>
+                @Html.HiddenFor(model => model.LastName, new { @id = "LastName", @class = "hidden-wasea" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="group">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Telephone</label>
+            @Html.HiddenFor(model => model.Telephone, new { @id = "Telephone", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
+        </div>
+        <div class="group">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>IDNP</label>
+            @Html.HiddenFor(model => model.IDNP, new { @id = "IDNP", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.IDNP, "", new { @class = "text-danger" })
+        </div>
+        <div class="group">
+            <input type="text" id="datepicker" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Birthday date:</label>
+            @Html.HiddenFor(model => model.DateOfBirthString, new { @id = "DateOfBirth", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+        </div>
+        <div class="group">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Work space</label>
+            @Html.HiddenFor(model => model.WorkSpace, new { @id = "WorkSpace", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.WorkSpace, "", new { @class = "text-danger" })
+        </div>
+        <div class="group">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Telephone Work space</label>
+            @Html.HiddenFor(model => model.TelephoneWorkSpace, new { @id = "TelephoneWorkSpace", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.TelephoneWorkSpace, "", new { @class = "text-danger" })
+        </div>
+        <div class="group">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Official venit(MDL)</label>
+            @Html.HiddenFor(model => model.OfficialVenit, new { @id = "OfficialVenit", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.OfficialVenit, "", new { @class = "text-danger" })
+        </div>
+        <div class="controls">
+            <label style="top: 25px">Married:</label>
+            <input class="toggle not-checked" type="checkbox" name='check-4' style="right:-70px;" id="checkbox" />
+            @Html.HiddenFor(model => model.IsMarried, new { @id = "IsMarried", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.IsMarried, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+
+            <div class="group hidden husband col-md-6">
+                <input type="text">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Work space (husband/wife)</label>
+                @Html.HiddenFor(model => model.WorkSpaceHusbandWife, new { @id = "WorkSpaceHusbandWife", @class = "hidden-wasea" })
+                @Html.ValidationMessageFor(model => model.WorkSpaceHusbandWife, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="group hidden husband col-md-6">
+                <input type="text">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Official venit(husband/wife)(MDL)</label>
+                @Html.HiddenFor(model => model.OfficialVenitHusbandWife, new { @id = "OfficialVenitHusbandWife", @class = "hidden-wasea" })
+                @Html.ValidationMessageFor(model => model.OfficialVenitHusbandWife, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="btn-group" id="months">
+            <button type="button" class="btn btn-primary active" value="6">6 Months</button>
+            <button type="button" class="btn btn-primary" value="12">12 Months</button>
+            <button type="button" class="btn btn-primary" value="24">24 Months</button>
+            @Html.HiddenFor(model => model.Months, new { @id = "Months", @class = "hidden-wasea" })
+            @Html.ValidationMessageFor(model => model.Months, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <span>
+                @Html.LabelFor(model => model.Sum, new { @class = "control-label" })
+                @Html.EditorFor(model => model.Sum, new { Htmlattributes = new { @readonly = "readonly", @style = "border:0; color:#f6931f; font-weight:bold;" } })
+            </span>
+            <br />
+            <div id="Sumslider"></div>
+            <br />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary">    |
+            @Html.ActionLink("Cancel", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-primary" })
+        </div>
+    </div>
+
+</form>
+
+
+
+  @*  <div class="row">
+
+        <div class="col-lg-5">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Telephone, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Telephone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IDNP, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.IDNP, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDNP, "", new { @class = "text-danger" })
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PersonType, new { @class = "control-label" })
+                @Html.ValidationMessageFor(model => model.PersonType, "", new { @class = "text-danger" })
+                <label class="checkbox-inline">
+                    @Html.RadioButtonFor(model => model.PersonType, "True", new { id = "physical", value = "Physical" })Physical Person
+                    @Html.RadioButtonFor(model => model.PersonType, "False", new { id = "juridical", value = "Juridical" })Juridical Person
+                </label>
+            </div>
+            <br />
+            <div>
+                <span>
+                    @Html.LabelFor(model => model.Sum, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Sum, new {Htmlattributes= new { @readonly = "readonly", @style= "border:0; color:#f6931f; font-weight:bold;" } })
+                </span>
+                <br />
+                <div id="Sumslider"></div>
+                <br />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary">    |
+                @Html.ActionLink("Cancel", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>*@
+
+}
+<script>
+    $(document).ready(function () {
+        $("#checkbox").val("off");
+        $("#IsMarried").val(false);
+        debugger;
+        var month =parseInt($("#months").children("button").val());
+        $("#Months").val(month);
+    });
+
+    $("#checkbox").on("change", function () {
+        if ($(this).val() == "off") {
+            $(this).val("on");
+            $("#IsMarried").val(true);
+            $(".husband").removeClass("hidden");
+        }
+        else {
+            $(this).val("off");
+            $("#IsMarried").val(false);
+            $(".husband").addClass("hidden");
+        }
+
+    });
+    $(".btn-group").children().on("click", function () {
+        debugger;
+        var currentitem = $(this);
+        $(".btn-group").children().removeClass("active");
+        var value = parseInt($(this).val());
+        $(this).addClass("active");
+        $("#Months").val(value);
+    });
+
+    $(".group").on("change", function () {
+        $(this).children(".hidden-wasea").val($(this).children("input").val());
+    });
+
+</script>
