@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.5\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -214,28 +217,96 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\csslider.css" />
-    <Content Include="Content\img\beach.png" />
-    <Content Include="Content\img\granny.jpg" />
-    <Content Include="Content\img\money.jpg" />
-    <Content Include="Content\layout\css\layouts\marketing-old-ie.css" />
-    <Content Include="Content\layout\css\layouts\marketing.css" />
-    <Content Include="Content\layout\img\common\file-icons.png" />
-    <Content Include="Content\layout\img\common\like.png" />
-    <Content Include="Content\img\close-1s-30px.svg" />
-    <Content Include="Content\img\ok-1s-30px.svg" />
-    <Content Include="Content\img\Spinner-1s-30px.gif" />
-    <Content Include="Content\img\Spinner-1s-45px.gif" />
+    <Content Include="Content\dummy\background%402x.jpg" />
+    <Content Include="Content\dummy\background.jpg" />
+    <Content Include="Content\dummy\dc-universe-759.jpg" />
+    <Content Include="Content\dummy\fantastic-twari.jpg" />
+    <Content Include="Content\dummy\figure%402x.jpg" />
+    <Content Include="Content\dummy\figure.jpg" />
+    <Content Include="Content\dummy\Overlord-websize.jpg" />
+    <Content Include="Content\dummy\person-1%402x.jpg" />
+    <Content Include="Content\dummy\person-1.jpg" />
+    <Content Include="Content\dummy\person-2%402x.jpg" />
+    <Content Include="Content\dummy\person-2.jpg" />
+    <Content Include="Content\dummy\person-3%402x.jpg" />
+    <Content Include="Content\dummy\person-3.jpg" />
+    <Content Include="Content\dummy\person-4%402x.jpg" />
+    <Content Include="Content\dummy\person-4.jpg" />
+    <Content Include="Content\dummy\single-image%402x.jpg" />
+    <Content Include="Content\dummy\single-image.jpg" />
+    <Content Include="Content\dummy\slide-1%402x.jpg" />
+    <Content Include="Content\dummy\slide-1.jpg" />
+    <Content Include="Content\dummy\slide-2%402x.jpg" />
+    <Content Include="Content\dummy\slide-2.jpg" />
+    <Content Include="Content\dummy\slide-3%402x.jpg" />
+    <Content Include="Content\dummy\slide-3.jpg" />
+    <Content Include="Content\dummy\thumb-1%402x.jpg" />
+    <Content Include="Content\dummy\thumb-1.jpg" />
+    <Content Include="Content\dummy\thumb-2%402x.jpg" />
+    <Content Include="Content\dummy\thumb-2.jpg" />
+    <Content Include="Content\dummy\thumb-3%402x.jpg" />
+    <Content Include="Content\dummy\thumb-3.jpg" />
+    <Content Include="Content\dummy\thumb-4%402x.jpg" />
+    <Content Include="Content\dummy\thumb-4.jpg" />
+    <Content Include="Content\dummy\thumb-5%402x.jpg" />
+    <Content Include="Content\dummy\thumb-5.jpg" />
+    <Content Include="Content\dummy\thumb-6%402x.jpg" />
+    <Content Include="Content\dummy\thumb-6.jpg" />
+    <Content Include="Content\dummy\thumb-7%402x.jpg" />
+    <Content Include="Content\dummy\thumb-7.jpg" />
+    <Content Include="Content\dummy\thumb-8%402x.jpg" />
+    <Content Include="Content\dummy\thumb-8.jpg" />
+    <Content Include="Content\dummy\venom.jpg" />
+    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\logo%402x.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\Webp.net-resizeimage %281%29.jpg" />
+    <Content Include="Content\img\Webp.net-resizeimage.jpg" />
     <Content Include="Content\register.css" />
+    <Content Include="Content\Site - Copy.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\FontAwesome\font-awesome.min.css" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Content\csslider.less" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.ttf" />
+    <Content Include="fonts\FontAwesome\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\layout\_content.scss" />
+    <Content Include="Content\layout\_footer.scss" />
+    <Content Include="Content\layout\_header.scss" />
+    <Content Include="Content\libs\bootstrap-grid\_grid.scss" />
+    <Content Include="Content\libs\bootstrap-grid\_mixins.scss" />
+    <Content Include="Content\libs\bootstrap-grid\_settings.scss" />
+    <Content Include="Content\libs\_components.scss" />
+    <Content Include="Content\libs\_global.scss" />
+    <Content Include="Content\libs\_mixins.scss" />
+    <Content Include="Content\libs\_normalize.scss" />
+    <Content Include="Content\libs\_settings.scss" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -247,6 +318,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\plugins.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
