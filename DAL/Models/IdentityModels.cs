@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -25,15 +24,13 @@ namespace DAL.Models
         {
         }
 
-        public DbSet<DataExtra> DataExtra { get; set; }
-        public DbSet<Image> Image { get; set; }
-        public DbSet<Credit> Credits { get; set; }
-        public DbSet<Request> Requests { get; set; }
-        public DbSet<Status> Statuses { get; set; }
-        public DbSet<Telephone> Telephones { get; set; }
-        public DbSet<FormErrors> FormErrorses { get; set; }
+		#region Dbsets
 
-        public static ApplicationDbContext Create()
+		//Dbsets
+
+		#endregion
+
+		public static ApplicationDbContext Create()
         {
 
             return new ApplicationDbContext();

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using BLL;
 using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -20,14 +16,9 @@ namespace MovieProject.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private readonly ITakeRequest iRequest = new TakeRequest();
-        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
-        public AccountController()
-        {
-        }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,26 +26,14 @@ namespace MovieProject.Controllers
 
         public ApplicationSignInManager SignInManager
         {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
+            get => _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+	        private set => _signInManager = value;
         }
 
         public ApplicationUserManager UserManager
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            get => _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+	        private set => _userManager = value;
         }
 
         //
@@ -89,8 +68,7 @@ namespace MovieProject.Controllers
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
-                case SignInStatus.Failure:
-                default:
+	            default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
@@ -132,8 +110,7 @@ namespace MovieProject.Controllers
                     return RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.Failure:
-                default:
+	            default:
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
             }
@@ -164,18 +141,9 @@ namespace MovieProject.Controllers
                     var roleStore = new RoleStore<IdentityRole>( new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-                    if (!_context.DataExtra.Any())
-                    {
-                        await roleManager.CreateAsync(new IdentityRole("Admin"));
-                        await UserManager.AddToRoleAsync(user.Id, "Admin");
-                        iRequest.SetDataExtra(user.Id, "Admin");
-                    }
-                    else
-                    {
-                        await roleManager.CreateAsync(new IdentityRole("User"));
-                        await UserManager.AddToRoleAsync(user.Id, "User");
-                        iRequest.SetDataExtra(user.Id, "User");
-                    }
+                    await roleManager.CreateAsync(new IdentityRole("User"));
+                    await UserManager.AddToRoleAsync(user.Id, "User");
+                    
 
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -361,8 +329,7 @@ namespace MovieProject.Controllers
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-                case SignInStatus.Failure:
-                default:
+	            default:
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;

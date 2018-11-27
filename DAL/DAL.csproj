@@ -53,107 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Migrations\201808070742117_Initial.cs" />
-    <Compile Include="Migrations\201808070742117_Initial.Designer.cs">
-      <DependentUpon>201808070742117_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808070809264_Add-Image.cs" />
-    <Compile Include="Migrations\201808070809264_Add-Image.Designer.cs">
-      <DependentUpon>201808070809264_Add-Image.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808081144408_Add-Models.cs" />
-    <Compile Include="Migrations\201808081144408_Add-Models.Designer.cs">
-      <DependentUpon>201808081144408_Add-Models.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808081220247_Add-ExampleTelephone_Add-Seen.cs" />
-    <Compile Include="Migrations\201808081220247_Add-ExampleTelephone_Add-Seen.Designer.cs">
-      <DependentUpon>201808081220247_Add-ExampleTelephone_Add-Seen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808090736301_Sum_and_nullableIsAccepted.cs" />
-    <Compile Include="Migrations\201808090736301_Sum_and_nullableIsAccepted.Designer.cs">
-      <DependentUpon>201808090736301_Sum_and_nullableIsAccepted.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808100705206_DataExtra_instead_UserId.cs" />
-    <Compile Include="Migrations\201808100705206_DataExtra_instead_UserId.Designer.cs">
-      <DependentUpon>201808100705206_DataExtra_instead_UserId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808140719437_Add-Validation.cs" />
-    <Compile Include="Migrations\201808140719437_Add-Validation.Designer.cs">
-      <DependentUpon>201808140719437_Add-Validation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808151317462_AddDataExtraRole.cs" />
-    <Compile Include="Migrations\201808151317462_AddDataExtraRole.Designer.cs">
-      <DependentUpon>201808151317462_AddDataExtraRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808161301069_ErrorForms.cs" />
-    <Compile Include="Migrations\201808161301069_ErrorForms.Designer.cs">
-      <DependentUpon>201808161301069_ErrorForms.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808291326587_Update_DataExtra.cs" />
-    <Compile Include="Migrations\201808291326587_Update_DataExtra.Designer.cs">
-      <DependentUpon>201808291326587_Update_DataExtra.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808292013250_NullabeDatetime.cs" />
-    <Compile Include="Migrations\201808292013250_NullabeDatetime.Designer.cs">
-      <DependentUpon>201808292013250_NullabeDatetime.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Credit.cs" />
-    <Compile Include="Models\DataExtra.cs" />
-    <Compile Include="Models\FormErrors.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\Request.cs" />
-    <Compile Include="Models\Status.cs" />
-    <Compile Include="Models\Telephone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
-    <Compile Include="Repository\IGenericRepository.cs" />
-    <Compile Include="Repository\IUnitOfWork.cs" />
-    <Compile Include="Repository\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808070742117_Initial.resx">
-      <DependentUpon>201808070742117_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808070809264_Add-Image.resx">
-      <DependentUpon>201808070809264_Add-Image.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808081144408_Add-Models.resx">
-      <DependentUpon>201808081144408_Add-Models.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808081220247_Add-ExampleTelephone_Add-Seen.resx">
-      <DependentUpon>201808081220247_Add-ExampleTelephone_Add-Seen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808090736301_Sum_and_nullableIsAccepted.resx">
-      <DependentUpon>201808090736301_Sum_and_nullableIsAccepted.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808100705206_DataExtra_instead_UserId.resx">
-      <DependentUpon>201808100705206_DataExtra_instead_UserId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808140719437_Add-Validation.resx">
-      <DependentUpon>201808140719437_Add-Validation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808151317462_AddDataExtraRole.resx">
-      <DependentUpon>201808151317462_AddDataExtraRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808161301069_ErrorForms.resx">
-      <DependentUpon>201808161301069_ErrorForms.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808291326587_Update_DataExtra.resx">
-      <DependentUpon>201808291326587_Update_DataExtra.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808292013250_NullabeDatetime.resx">
-      <DependentUpon>201808292013250_NullabeDatetime.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
