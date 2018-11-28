@@ -1,0 +1,21 @@
+﻿@model MovieProject.ViewModels.TemplateViewModel
+@{
+    ViewBag.Title = "Template";
+}
+
+
+@using (Html.BeginForm("Template", "Home", FormMethod.Post))
+{
+    <main class="main-content">
+        <div class="container">
+            <h2>This is a template for those who want to know a little bit of basics</h2>
+            <div class="form-inline">
+                @Html.TextBoxFor(x => x.Textbox1, new {@class = "form-control", @placeholder = "placeholder"})
+            </div> 
+
+        </div>
+        
+    </main>
+    
+}
+
